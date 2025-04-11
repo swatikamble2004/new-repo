@@ -1,11 +1,11 @@
-.login-container{
+.forget-container{
     width: 100%;
     height: 100vh;
     background: linear-gradient(120deg, royalblue, darkorange,blue);
     display: grid;
     place-content: center;
 }
-.login-container form{
+.forget-container form{
     width: 350px;
     height: auto;
     background: white;
@@ -19,25 +19,25 @@
     gap: 10px;
 }
 
-.login-container form .input-field1{
+.forget-container form .input-field2{
     width: 100%;
 
 }
-.login-container form .input-field1 label{
+.forget-container form .input-field2 label{
     font-size: 15px;
     font-weight: 500;
     color: rgb(36, 36, 42);
 
 }
 
-.login-container form .input-field1 input{
+.forget-container form .input-field2 input{
     width: 100%;
     padding: 10px;
     border-radius: 4px;
     /* border: black; */
     
 }
-.login-container form  button{
+.forget-container form  button{
     margin-top: 15px;
     width: 100%;
     background: linear-gradient(80deg, blue,darkorange);
@@ -50,19 +50,8 @@
     outline: none;
     cursor: pointer;
 }
-.login-container form .input-field1 p{
+.forget-container form .input-field2 p{
     font-size: 15px;
     color: red;
     margin-top: 4px;
-}
-
-.login-container form .register {
-    margin-bottom: 10px;
-    align-self: center;
-    font-weight: bold;
-}
-
-.login-container form .forget {
-    align-self: flex-end;
-    font-size: 0.9em;
 }

@@ -1,16 +1,14 @@
-import './Style.css'
+import './style.css'
 
-export default function Loader() {
+export default function Loader(){
     return(
         <>
-          <div className="loader-container">
+        <div className="loader-container">
             <div className="box">
-                <div className="circle">
-                </div>
-                <p>please wait</p>
-
+                <div className="circle"></div>
+                <p>Please wait...</p>
             </div>
-          </div>
+        </div>
         </>
     )
 }

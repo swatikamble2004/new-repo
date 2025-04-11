@@ -1,104 +1,111 @@
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import './Register.css'
 import { useState } from 'react'
 import Loader from './Loader'
 import toast, { Toaster } from 'react-hot-toast'
+import axios from 'axios'
 
 export default function Register(){
-
-    const{register,handleSubmit,formState:{errors},watch}=useForm()
-const [isLoading,setIsLoading]=useState(false)
-
+    const {register,handleSubmit, formState:{errors}, watch}=useForm()
+    const password=watch('password')
+    const [isLoading, setLoading]=useState(false)
     const onFormSubmit=(data)=>{
-        setIsLoading(true)
+        setLoading(true)
         setTimeout(async()=>{
-            // const res =awa
+            const res= await axios.post('https://node-mongodb-backend-kappa.vercel.app/register',data)
             const resData=res.data
-            setIsLoading(false)
+            setLoading(false)
             if(resData.status){
-                toast.success('Registration successful')
+                toast.success('User registerd successfully')
+            }else{
+                toast.error(resData.message)
             }
-            else{
-                toast.error('Registration failed')
-            }
-        },2000)
+        },1000)
+
     }
-
-    
     return(
-
-
         <>
+            <Toaster
+  position="top-center"
+  reverseOrder={false}
+  gutter={8}
+  containerClassName=""
+  containerStyle={{}}
+  toastOptions={{
+    // Define default options
+    className: '',
+    duration: 5000,
+    removeDelay: 1000,
+    style: {
+      background: '#363636',
+      color: '#fff',
+    },
+
+    // Default options for specific types
+    success: {
+      duration: 3000,
+      iconTheme: {
+        primary: 'green',
+        secondary: 'black',
+      },
+    },
+  }}
+/>
         {isLoading && <Loader/>}
         <div className="register-container">
-            <h2>Register form</h2>
             <form onSubmit={handleSubmit(onFormSubmit)}>
-            <div className="input-field">
-                <label>Username</label>
-                <input  type='text' {...register('fullname',{required:'fullname is required'})}></input>
-                { errors.fullname && <p>{errors.fullname.message}</p>}
-            </div>
-            <div className="input-field">
-                <label>email</label>
-                <input type='email' {...register('email',{required:'email is required',pattern:{value:/^\S+@\S+$/i, message:'invalid email'}})}></input>
-                { errors.email && <p>{errors.email.message}</p>}
+                <h2>Register</h2>
+                <div className="input-field">
+                    <label>Fullname</label>
+                    <input type='text' {...register('fullName',{required:'Fullname is required'})}></input>
+                   {errors.fullName && <p>{errors.fullName.message}</p>}
+                </div>
+                <div className="input-field">
+                    <label>Email</label>
+                    <input type='email' {...register('userName',{required:'Username is required',
+                        pattern:{
+                            value:/^\S+@\S+$/i , message:'Invalid email'
+                        }
+                    })}></input>
+                    {errors.userName && <p>{errors.userName.message}</p>}
 
-            </div>
-            <div className="input-field">
-                <label>age</label>
-                <input type='number' {...register('age',{required:'age is required',
-                    min:{
-                        value:18,
-                        message:'tenegers are not allowed'
-                    }
-                })}></input>
-                { errors.age && <p>{errors.age.message}</p>}
+                </div>
+                <div className="input-field">
+                    <label>Age</label>
+                    <input type='number' {...register('age',{required:'Age is requird',
+                        min:{
+                            value:18,
+                            message:'Teenagers are not allowed'
+                        }
+                    })}></input>
+                    {errors.age && <p>{errors.age.message}</p>}
 
-            </div>
+                </div>
+                <div className="input-field">
+                    <label>Password</label>
+                    <input type='password' {...register('password',{required:'Password is requird',
+                        minLength:{
+                            value:6,
+                            message:'Password length should be greater than 6 character'
+                        }
+                    })}></input>
+                    {errors.password && <p>{errors.password.message}</p>}
 
-            <div className="input-field">
-                <label>password</label>
-                <input  type='password' {...register('password',{required:'password is required'})}></input>
-                { errors.password && <p>{errors.password.message}</p>}
+                </div>
+                <div className="input-field">
+                    <label>Confirm Password</label>
+                    <input type='password' {...register('cnf',{validate:(value)=>
+                    value===password || 'Password does not match'
+                       
+                    })}></input>
+                    {errors.cnf && <p>{errors.cnf.message}</p>}
 
-            </div>
-            <div className="input-field">
-                <label>confirm password</label>
-                <input type='password'{...register('cnf',{
-                    validate:(value)=>
-                        value===password || "password does't match"
-                })}></input>
-                {errors.cnf &&<p>{errors.cnf.message}</p>}
-            </div>
-            <button type='submit'>Submit</button>
+                </div>
+
+                <button type='submit'>Register</button>
+
             </form>
         </div>
-
-        <Toaster
-                    position="top-center"
-                    reverseOrder={false}
-                    gutter={8}
-                    containerClassName=""
-                    containerStyle={{}}
-                    toastOptions={{
-                        // Define default options
-                        className: '',
-                        duration: 5000,
-                        removeDelay: 1000,
-                        style: {
-                        background: '#363636',
-                        color: '#fff',
-                        },
-
-                        success: {
-                        duration: 3000,
-                        iconTheme: {
-                            primary: 'green',
-                            secondary: 'black',
-                        },
-                        },
-                    }}
-                />
         </>
     )
 }

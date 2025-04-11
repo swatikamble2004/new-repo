@@ -1,34 +1,33 @@
-.notFound-container{
-    height: 100vh;
+.not-found-container{
     width: 100%;
+    height: 100vh;
+    background: linear-gradient(120deg, gray, rgb(219, 216, 216));
     display: grid;
     place-content: center;
-    background: blueviolet;
 }
-.notFound-container .box{
-    height: 150px;
-    width: 250px;
-    border: 2px solid black;
+.not-found-container .box{
+    width: 350px;
     background: white;
-    
-}
-.notFound-container .box h2{
-    margin-top: 5px;
-    
-}
-.notFound-container .box p{
-    font-size: 16px;
-    font-weight: bold;
+    box-shadow: 5px 5px 10px rgb(78, 77, 77);
+    padding: 20px 15px;
+    border-radius: 4px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
 }
-.notFound-container .box button{
-    width: 100%;
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 8px;
-    margin-top: 20px;
 
+.not-found-container .box  button{
+    margin-top: 15px;
+    width: 100%;
+    background: linear-gradient(80deg, blue,darkorange);
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
