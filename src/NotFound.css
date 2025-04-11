@@ -1,0 +1,34 @@
+.notFound-container{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    background: blueviolet;
+}
+.notFound-container .box{
+    height: 150px;
+    width: 250px;
+    border: 2px solid black;
+    background: white;
+    
+}
+.notFound-container .box h2{
+    margin-top: 5px;
+    
+}
+.notFound-container .box p{
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.notFound-container .box button{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 8px;
+    margin-top: 20px;
+
+}
